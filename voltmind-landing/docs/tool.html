@@ -1,0 +1,167 @@
+<p>Here’s a <strong>full inventory of the tools</strong> in the
+generated dataset, along with <strong>sample calls</strong> you can drop
+straight into your VoltMind model documentation so developers understand
+each tool’s purpose, parameters, and example JSON payloads.</p>
+<hr />
+<h2 id="voltmind-tool-registry"><strong>📜 VoltMind Tool
+Registry</strong></h2>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 16%" />
+<col style="width: 22%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool Name</th>
+<th>Purpose</th>
+<th>Key Parameters</th>
+<th>Sample Call</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>create_dr_event</strong></td>
+<td>Creates a new Demand Response (DR) event with UEI/OpenADR-compliant
+payload.</td>
+<td><code>event_id</code>, <code>target_mw</code>,
+<code>start_time</code>, <code>end_time</code>,
+<code>incentive_rate</code>, <code>feeder_ids</code>,
+<code>approval_required</code></td>
+<td><code>json { "name": "create_dr_event", "parameters": { "event_id": "DR-2025-001", "target_mw": 3.5, "start_time": "2025-08-15T18:00", "end_time": "2025-08-15T21:00", "incentive_rate": 4.5, "feeder_ids": ["FD-1101", "FD-1102"], "approval_required": true } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>get_dr_status</strong></td>
+<td>Fetches the current status of a DR event.</td>
+<td><code>event_id</code></td>
+<td><code>json { "name": "get_dr_status", "parameters": { "event_id": "DR-2025-001" } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>settle_dr_incentive</strong></td>
+<td>Settles incentives for a completed DR event using M&amp;V data.</td>
+<td><code>event_id</code>, <code>m_and_v_links</code>,
+<code>final_payment</code></td>
+<td><code>json { "name": "settle_dr_incentive", "parameters": { "event_id": "DR-2025-001", "m_and_v_links": ["https://mv-data/discom1/dr001.csv"], "final_payment": 158000 } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>grid_state_read</strong></td>
+<td>Reads live grid health and topology state.</td>
+<td><code>substation_id</code>, <code>include_harmonics</code>,
+<code>include_voltage_profile</code></td>
+<td><code>json { "name": "grid_state_read", "parameters": { "substation_id": "SS-DEL-003", "include_harmonics": true, "include_voltage_profile": true } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>grid_reconfig_suggest</strong></td>
+<td>Suggests optimal grid reconfiguration to balance load or isolate
+faults.</td>
+<td><code>substation_id</code>, <code>reason</code>,
+<code>target_feeders</code></td>
+<td><code>json { "name": "grid_reconfig_suggest", "parameters": { "substation_id": "SS-DEL-003", "reason": "Overload mitigation", "target_feeders": ["FD-1101", "FD-1102"] } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>pv_inverter_setpoint</strong></td>
+<td>Updates PV inverter active/reactive power targets.</td>
+<td><code>inverter_id</code>, <code>target_kw</code>,
+<code>target_kvar</code>, <code>mode</code></td>
+<td><code>json { "name": "pv_inverter_setpoint", "parameters": { "inverter_id": "INV-87654", "target_kw": 45.0, "target_kvar": 5.0, "mode": "PQ" } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>bess_setpoint</strong></td>
+<td>Sets charge/discharge limits for a Battery Energy Storage
+System.</td>
+<td><code>battery_id</code>, <code>target_kw</code>,
+<code>target_soc</code></td>
+<td><code>json { "name": "bess_setpoint", "parameters": { "battery_id": "BESS-2345", "target_kw": -20.0, "target_soc": 75 } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>der_schedule</strong></td>
+<td>Schedules DER assets for specific time windows.</td>
+<td><code>asset_ids</code>, <code>start_time</code>,
+<code>end_time</code>, <code>mode</code></td>
+<td><code>json { "name": "der_schedule", "parameters": { "asset_ids": ["INV-87654", "BESS-2345"], "start_time": "2025-08-15T06:00", "end_time": "2025-08-15T18:00", "mode": "max_export" } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>sensor_data_read</strong></td>
+<td>Reads data from a specific grid or weather sensor.</td>
+<td><code>sensor_id</code>, <code>parameters</code>,
+<code>start_time</code>, <code>end_time</code></td>
+<td><code>json { "name": "sensor_data_read", "parameters": { "sensor_id": "SEN-001", "parameters": ["voltage", "frequency"], "start_time": "2025-08-14T00:00", "end_time": "2025-08-14T23:59" } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>sensor_alert_subscribe</strong></td>
+<td>Subscribes to threshold-based alerts from a sensor.</td>
+<td><code>sensor_id</code>, <code>alert_condition</code>,
+<code>callback_url</code></td>
+<td><code>json { "name": "sensor_alert_subscribe", "parameters": { "sensor_id": "SEN-001", "alert_condition": "voltage&lt;210", "callback_url": "https://voltalert/api/callback" } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>uei_deg_discover</strong></td>
+<td>Discovers services/resources via UEI/DEG API.</td>
+<td><code>domain</code>, <code>query_params</code></td>
+<td><code>json { "name": "uei_deg_discover", "parameters": { "domain": "energy.trade.p2p", "query_params": { "state": "Delhi", "capacity_min": 10 } } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>uei_deg_fulfill</strong></td>
+<td>Executes a UEI/DEG fulfillment step.</td>
+<td><code>transaction_id</code>, <code>actor_id</code>,
+<code>fulfillment_payload</code></td>
+<td><code>json { "name": "uei_deg_fulfill", "parameters": { "transaction_id": "TXN-9082", "actor_id": "BPP-DEL-01", "fulfillment_payload": { "meter_reading": "https://mv/delhi/txn9082.csv" } } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>uei_deg_settle</strong></td>
+<td>Settles a UEI/DEG transaction.</td>
+<td><code>transaction_id</code>, <code>settlement_details</code></td>
+<td><code>json { "name": "uei_deg_settle", "parameters": { "transaction_id": "TXN-9082", "settlement_details": { "amount": 45200, "currency": "INR" } } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>flex_forecast</strong></td>
+<td>Generates a forecast for available DR flexibility.</td>
+<td><code>area_id</code>, <code>horizon_hours</code>,
+<code>granularity</code></td>
+<td><code>json { "name": "flex_forecast", "parameters": { "area_id": "ZONE-DEL-N", "horizon_hours": 24, "granularity": "15min" } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>load_shift_plan</strong></td>
+<td>Generates a recommended load-shift schedule.</td>
+<td><code>area_id</code>, <code>shift_mw</code>,
+<code>start_time</code>, <code>end_time</code></td>
+<td><code>json { "name": "load_shift_plan", "parameters": { "area_id": "ZONE-DEL-N", "shift_mw": 2.5, "start_time": "2025-08-15T14:00", "end_time": "2025-08-15T18:00" } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>calc_cfa_subsidy</strong></td>
+<td>Calculates CFA subsidy for rooftop solar projects.</td>
+<td><code>state</code>, <code>capacity_kw</code>,
+<code>consumer_type</code></td>
+<td><code>json { "name": "calc_cfa_subsidy", "parameters": { "state": "Uttar Pradesh", "capacity_kw": 5, "consumer_type": "residential" } }</code></td>
+</tr>
+<tr class="odd">
+<td><strong>calc_emi</strong></td>
+<td>Calculates EMI for solar/battery project financing.</td>
+<td><code>loan_amount</code>, <code>interest_rate</code>,
+<code>tenure_months</code></td>
+<td><code>json { "name": "calc_emi", "parameters": { "loan_amount": 250000, "interest_rate": 6.5, "tenure_months": 60 } }</code></td>
+</tr>
+<tr class="even">
+<td><strong>calc_ulb_payout</strong></td>
+<td>Calculates payout from Urban Local Body for renewable projects.</td>
+<td><code>project_cost</code>, <code>ulb_subsidy_percent</code></td>
+<td><code>json { "name": "calc_ulb_payout", "parameters": { "project_cost": 450000, "ulb_subsidy_percent": 15 } }</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="notes-for-docs">🔹 Notes for Docs</h3>
+<ul>
+<li>Each <strong>tool</strong> above corresponds to at least
+<strong>200–800 synthetic and multilingual training samples</strong> in
+the dataset.</li>
+<li>The validators enforce <strong>parameter completeness</strong>
+(time, MW, IDs, etc.) so incomplete calls are rejected in training and
+inference.</li>
+<li>For <strong>multilingual NLP</strong>, every tool also has
+<strong>prefix-localized prompts</strong> like <code>[हिंदी]</code>,
+<code>[தமிழ்]</code>, <code>[বাংলা]</code> to ensure parameter slots
+survive translation.</li>
+</ul>
+<hr />

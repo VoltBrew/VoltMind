@@ -1,0 +1,300 @@
+<h1
+id="voltmind-domain-knowledge-capabilities-documentation"><strong>VoltMind
+– Domain Knowledge &amp; Capabilities Documentation</strong></h1>
+<p><strong>Version:</strong> 1.0 Beta <strong>Foundation:</strong>
+DeepSeek-R1 Distill Qwen-7B (fine-tuned over 1M+ energy datapoints)
+<strong>Publisher:</strong> VoltBrew Technologies Pvt. Ltd.
+<strong>Deployment:</strong> Available for download via CDN and in
+Ollama; also accessible via VoltMind Chat Portal.</p>
+<hr />
+<h2 id="overview"><strong>1. Overview</strong></h2>
+<p>VoltMind is <strong>India’s first vertical LLM for grid services,
+demand response, DERMS, and renewable energy trading</strong>. It is
+<strong>multilingual</strong> (supports all major Indian languages),
+<strong>tool-aware</strong> (UEI, DEG, Beckn, DER control APIs), and
+<strong>regulation-trained</strong> (state-specific policies &amp;
+subsidies).</p>
+<hr />
+<h2 id="dataset-inventory-abilities"><strong>2. Dataset Inventory &amp;
+Abilities</strong></h2>
+<p>Below is a structured breakdown of <strong>every dataset integrated
+in VoltMind</strong>, its <strong>capability</strong>, and
+<strong>example use cases</strong>.</p>
+<hr />
+<h3 id="policy-regulation-datasets"><strong>2.1 Policy &amp; Regulation
+Datasets</strong></h3>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 23%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset Name</th>
+<th>Coverage</th>
+<th>Ability Added</th>
+<th>Example Prompt (English)</th>
+<th>Example Prompt (Hindi)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>delp2p.jsonl</strong></td>
+<td>Delhi DERC P2P Energy Trading Guidelines 2024</td>
+<td>Can answer, validate, and generate transaction payloads compliant
+with Delhi P2P regulation</td>
+<td>“Generate a DERC-compliant settlement JSON for a 2.5 MW P2P trade in
+Delhi”</td>
+<td>“दिल्ली में 2.5 मेगावाट पी2पी व्यापार के लिए डीईआरसी के अनुसार सेटलमेंट JSON
+बनाएं”</td>
+</tr>
+<tr class="even">
+<td><strong>upp2p.jsonl</strong></td>
+<td>UPERC Uttar Pradesh P2P Guidelines 2024</td>
+<td>Similar ability for UP P2P</td>
+<td>“Create a UPERC-compliant onboarding payload for UPPCL”</td>
+<td>“यूपीपीसीएल के लिए यूपीईआरसी के अनुरूप ऑनबोर्डिंग JSON तैयार करें”</td>
+</tr>
+<tr class="odd">
+<td><strong>policy_qna.jsonl</strong></td>
+<td>Central &amp; State energy policies</td>
+<td>Answers FAQs, compliance clarifications, subsidy eligibilities</td>
+<td>“What are the CFA limits under MNRE rooftop solar scheme?”</td>
+<td>“एमएनआरई रूफटॉप सोलर योजना के तहत सीएफए सीमा क्या है?”</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="national-schemes-subsidy-datasets"><strong>2.2 National Schemes
+&amp; Subsidy Datasets</strong></h3>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 26%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Coverage</th>
+<th>Ability Added</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>pm_surya_ghar.jsonl</strong></td>
+<td>PM Surya Ghar Muft Bijli Yojana – PIB releases, portal data</td>
+<td>Detailed Q&amp;A, eligibility checks, multilingual answers</td>
+<td>“Check CFA for 5 kW rooftop in Maharashtra under PM Surya Ghar”</td>
+</tr>
+<tr class="even">
+<td><strong>cfa_emi_ulb_calc.jsonl</strong></td>
+<td>CFA, EMI &amp; ULB incentive calculators</td>
+<td>Model can compute payouts given capacity, subsidy %, interest
+rates</td>
+<td>“Calculate EMI for 4 kW rooftop, 20% CFA, 8% interest, 5-year
+term”</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="interoperability-protocol-datasets"><strong>2.3 Interoperability
+&amp; Protocol Datasets</strong></h3>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Coverage</th>
+<th>Ability Added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>interoperability.jsonl</strong></td>
+<td>UEI, DEG, Beckn ONIX payload generation</td>
+<td>Model can output ready-to-use JSON payloads for DR programs, P2P
+trades, settlement flows</td>
+</tr>
+<tr class="even">
+<td><strong>open_standards.jsonl</strong></td>
+<td>IEC 61850, IEEE 2030.5, OpenADR mapping</td>
+<td>Can map between protocol fields and regulatory terms</td>
+</tr>
+<tr class="odd">
+<td><strong>beckn_p2p.jsonl</strong></td>
+<td>Beckn-compliant P2P payloads from Postman examples</td>
+<td>Generates valid Beckn trading, discovery, offer, and settlement
+payloads</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="grid-ops-dr-der-control-datasets"><strong>2.4 Grid Ops, DR &amp;
+DER Control Datasets</strong></h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Ability Added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>grid_ops.jsonl</strong></td>
+<td>Respond to operational commands like feeder reconfiguration, voltage
+control, outage response</td>
+</tr>
+<tr class="even">
+<td><strong>dr_planning.jsonl</strong></td>
+<td>Design DR events, suggest target MW, participant groups,
+schedules</td>
+</tr>
+<tr class="odd">
+<td><strong>settlement_tools.jsonl</strong></td>
+<td>Automate DR settlement based on M&amp;V</td>
+</tr>
+<tr class="even">
+<td><strong>pv_inverter_control.jsonl</strong></td>
+<td>Adjust inverter setpoints via Modbus/IEEE2030.5</td>
+</tr>
+<tr class="odd">
+<td><strong>bess_control.jsonl</strong></td>
+<td>Dispatch battery charge/discharge schedules</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="discom-consumer-engagement-datasets"><strong>2.5 Discom &amp;
+Consumer Engagement Datasets</strong></h3>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Ability Added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>discom_chatops.jsonl</strong></td>
+<td>Engage with DISCOM staff for outage, billing, load forecast</td>
+</tr>
+<tr class="even">
+<td><strong>vernacular.jsonl</strong></td>
+<td>All above capabilities in Hindi, Tamil, Telugu, Bengali, Marathi,
+Gujarati, Kannada, Malayalam, Punjabi</td>
+</tr>
+<tr class="odd">
+<td><strong>scheme_match.jsonl</strong></td>
+<td>Suggest applicable subsidy schemes based on consumer profile</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="voltbrew-branding-model-persona-dataset"><strong>2.6 VoltBrew
+Branding &amp; Model Persona Dataset</strong></h3>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Ability Added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>voltbrand.jsonl</strong></td>
+<td>Ensures model self-introduces correctly: <em>“I am VoltMind, India’s
+first vertical LLM for grid services, trained over 1M+ energy
+datapoints. Foundation: DeepSeek-R1 Distill Qwen-7B fine-tuned.”</em> in
+multiple languages</td>
+</tr>
+<tr class="even">
+<td><strong>brand_guard.jsonl</strong></td>
+<td>Prevents mention of base model unless specifically asked; emphasizes
+VoltBrew ownership</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="tool-calling-api-layer-dataset"><strong>2.7 Tool-Calling &amp;
+API Layer Dataset</strong></h3>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Ability Added</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>volt_tools.jsonl</strong></td>
+<td>20+ tool schemas for UEI/DEG/DER control</td>
+</tr>
+<tr class="even">
+<td><strong>tool_examples.jsonl</strong></td>
+<td>Prompt → JSON mappings for function calling</td>
+</tr>
+<tr class="odd">
+<td><strong>validators.jsonl</strong></td>
+<td>Ensures completeness of time, MW, IDs in tool calls</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="developer-examples"><strong>3. Developer Examples</strong></h2>
+<p>Example in <strong>English</strong>:</p>
+<pre><code>User: Schedule a DR event in Gujarat for 4 MW from 5 PM–8 PM, ₹5/kWh incentive.
+Model: [create_dr_event tool call JSON]</code></pre>
+<p>Example in <strong>Hindi</strong>:</p>
+<pre><code>उपयोगकर्ता: गुजरात में 4 मेगावाट के लिए शाम 5 से 8 बजे तक का डीआर इवेंट शेड्यूल करें, ₹5/किलोवाट-घंटा प्रोत्साहन।
+मॉडल: [create_dr_event टूल कॉल JSON]</code></pre>
+<hr />
+<h2 id="impact"><strong>4. Impact</strong></h2>
+<ul>
+<li><strong>For DISCOMs:</strong> Faster DR event setup, reduced manual
+errors.</li>
+<li><strong>For DERMS Vendors:</strong> Drop-in API-ready responses for
+control systems.</li>
+<li><strong>For Policymakers:</strong> Instant multilingual policy
+Q&amp;A and compliance mapping.</li>
+<li><strong>For Consumers:</strong> Transparent scheme matching and
+subsidy computation.</li>
+</ul>
+<hr />
+<p>Examples include:</p>
+<p>Design UEI/Beckn ONIX payloads with
+actor/intent/catalog/fulfillment/schedule/M&amp;V/settlement/human_approval.</p>
+<p>Plan DR with feeder constraints, baseline choices (e.g., 3/5-day
+avg), ToU tariffs, overrides, and full M&amp;V + audit trails.</p>
+<p>Specify tamper-evident logs, consent receipts, fallback safety
+protocols, resilience for outage modes.</p>
+<p>Orchestrate AI-flex for data centers with SLAs, guardrails, and
+carbon-aware scheduling.</p>
+<p>VoltMind Multilingual Branding Dataset Languages: English, Hindi,
+Punjabi, Kannada, Tamil, Telugu, Bengali, Gujarati, Marathi, Malayalam
+Audiences: generic, farmer, corporate, regulator, developer</p>

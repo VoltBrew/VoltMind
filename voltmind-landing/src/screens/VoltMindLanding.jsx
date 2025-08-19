@@ -1,5 +1,12 @@
-import { useState } from "react";
+import { useState} from "react";
+import ReactMarkdown from 'react-markdown';
 import { Brain, Sparkles, Zap, Server, Network, ShieldCheck, BookOpen, Waypoints, Workflow, Globe2, Download, Play } from "lucide-react";
+import DocumentOne from "../components/DocumentOne";
+import Document2 from "../components/Document2";
+import ToolDocument from "../components/ToolDocument";
+import TrainingData from "../components/TrainingData";
+import Tool from "../components/Tool";
+
 
 // TailwindCSS assumed available per instructions
 // Single-file React component for a professional landing page with two primary CTAs in the hero.
@@ -392,6 +399,12 @@ export default function VoltMindLanding() {
         </div>
       </section>
 
+      <DocumentOne/>
+      <Document2/>
+      <ToolDocument/>
+      <TrainingData/>
+      <Tool/>
+
       {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-10 text-sm text-slate-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -403,6 +416,8 @@ export default function VoltMindLanding() {
           </div>
         </div>
       </footer>
+
+      
     </main>
   );
 }

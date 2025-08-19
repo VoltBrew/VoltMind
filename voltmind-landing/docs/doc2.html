@@ -1,0 +1,237 @@
+<h1 id="voltmind-model-card"><strong>VoltMind Model Card</strong></h1>
+<p><strong>Model Name:</strong> <code>VoltMind-1.0-beta</code>
+<strong>Foundation Model:</strong> DeepSeek-R1 Distill Qwen-7B
+(fine-tuned) <strong>Publisher:</strong> VoltBrew Technologies Pvt. Ltd.
+<strong>Release Date:</strong> August 2025 <strong>Download:</strong>
+[CDN Link] | [Ollama Pull Command] <strong>License:</strong> Apache 2.0
+(with attribution to VoltBrew for fine-tuning)</p>
+<hr />
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>VoltMind is <strong>India’s first vertical large language model for
+grid services, demand response, DERMS, renewable energy trading, and
+regulatory compliance</strong>. Trained on <strong>over 1 million
+curated energy-sector datapoints</strong> across multilingual corpora,
+VoltMind can operate as:</p>
+<ul>
+<li>A <strong>policy expert</strong> for Indian state &amp; central
+energy regulations</li>
+<li>A <strong>tool-aware AI agent</strong> for UEI, DEG, Beckn ONIX, DER
+control APIs</li>
+<li>A <strong>multilingual assistant</strong> for consumers, DISCOMs,
+and energy businesses</li>
+<li>A <strong>developer platform</strong> with function-calling APIs for
+grid automation</li>
+</ul>
+<hr />
+<h2 id="intended-use"><strong>Intended Use</strong></h2>
+<p>VoltMind is designed for:</p>
+<ul>
+<li><strong>DISCOMs</strong> to manage DR, settlements, and consumer
+engagement</li>
+<li><strong>DERMS &amp; VPP operators</strong> for automated asset
+control &amp; protocol translation</li>
+<li><strong>Policy compliance teams</strong> for instant, accurate
+regulation-based answers</li>
+<li><strong>Consumers &amp; RESCOs</strong> for subsidy eligibility
+checks and application help</li>
+</ul>
+<hr />
+<h2 id="capabilities-by-dataset"><strong>Capabilities by
+Dataset</strong></h2>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 20%" />
+<col style="width: 41%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Ability</th>
+<th>Example Prompt</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>delp2p.jsonl</code></td>
+<td>Delhi DERC P2P compliance</td>
+<td>“Generate settlement payload for 3 MW trade in Delhi”</td>
+<td>JSON (DERC fields)</td>
+</tr>
+<tr class="even">
+<td><code>upp2p.jsonl</code></td>
+<td>UPERC P2P compliance</td>
+<td>“UPERC onboarding JSON for 5 MW solar peer”</td>
+<td>JSON (UPERC fields)</td>
+</tr>
+<tr class="odd">
+<td><code>pm_surya_ghar.jsonl</code></td>
+<td>PM Surya Ghar Q&amp;A</td>
+<td>“Subsidy for 4 kW rooftop in Gujarat”</td>
+<td>₹ amount + terms</td>
+</tr>
+<tr class="even">
+<td><code>cfa_emi_ulb_calc.jsonl</code></td>
+<td>Subsidy calculators</td>
+<td>“EMI for 3 kW rooftop, 8% interest, 5 years”</td>
+<td>EMI breakdown</td>
+</tr>
+<tr class="odd">
+<td><code>interoperability.jsonl</code></td>
+<td>UEI/DEG payload generation</td>
+<td>“DEG request to settle DR incentive for Tamil Nadu”</td>
+<td>JSON (protocol-compliant)</td>
+</tr>
+<tr class="even">
+<td><code>beckn_p2p.jsonl</code></td>
+<td>Beckn trading payloads</td>
+<td>“Beckn publish_offer for DR in Maharashtra”</td>
+<td>JSON</td>
+</tr>
+<tr class="odd">
+<td><code>grid_ops.jsonl</code></td>
+<td>Grid control commands</td>
+<td>“Schedule feeder load shift at 6 PM”</td>
+<td>JSON control</td>
+</tr>
+<tr class="even">
+<td><code>dr_planning.jsonl</code></td>
+<td>DR event design</td>
+<td>“Plan DR for 5 MW, 6-9 PM, ₹6/kWh”</td>
+<td>JSON + text plan</td>
+</tr>
+<tr class="odd">
+<td><code>discom_chatops.jsonl</code></td>
+<td>DISCOM staff chat</td>
+<td>“Summarize outages in Tamil Nadu”</td>
+<td>Text summary</td>
+</tr>
+<tr class="even">
+<td><code>vernacular.jsonl</code></td>
+<td>Multilingual responses</td>
+<td>Hindi/Tamil/Telugu Q&amp;A</td>
+<td>Localized text</td>
+</tr>
+<tr class="odd">
+<td><code>voltbrand.jsonl</code></td>
+<td>Model self-introduction</td>
+<td>“Who made you?”</td>
+<td>VoltMind branding text</td>
+</tr>
+<tr class="even">
+<td><code>volt_tools.jsonl</code></td>
+<td>Tool-call schemas</td>
+<td>“Adjust PV inverter to 80% output”</td>
+<td>Tool call JSON</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tool-layer-function-calling"><strong>Tool Layer (Function
+Calling)</strong></h2>
+<p>VoltMind supports 20+ <strong>tool schemas</strong>, including:</p>
+<ul>
+<li><code>create_dr_event</code></li>
+<li><code>settle_incentive</code></li>
+<li><code>dispatch_bess</code></li>
+<li><code>adjust_inverter_output</code></li>
+<li><code>get_meter_data</code></li>
+<li><code>forecast_load</code></li>
+<li><code>generate_p2p_offer</code></li>
+<li><code>verify_mandv</code></li>
+<li><code>scheme_match_lookup</code></li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;create_dr_event&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;arguments&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;state&quot;</span><span class="fu">:</span> <span class="st">&quot;Gujarat&quot;</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;target_mw&quot;</span><span class="fu">:</span> <span class="fl">4.0</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;window&quot;</span><span class="fu">:</span> <span class="st">&quot;17:00–20:00&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;price_incentive&quot;</span><span class="fu">:</span> <span class="fl">5.0</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;approval_required&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h2 id="multilingual-support"><strong>Multilingual Support</strong></h2>
+<p>VoltMind supports:</p>
+<ul>
+<li><strong>Primary:</strong> Hindi, Tamil, Telugu, Bengali, Marathi,
+Gujarati, Kannada, Malayalam, Punjabi, English</li>
+<li><strong>Fallback:</strong> English translation if unsupported
+dialect detected</li>
+</ul>
+<p>Example (Hindi):</p>
+<pre><code>उपयोगकर्ता: तमिलनाडु में 3 मेगावाट के लिए शाम 6 से 9 बजे तक का डीआर इवेंट प्लान करें।
+मॉडल: [create_dr_event टूल कॉल JSON]</code></pre>
+<hr />
+<h2 id="evaluation-summary-internal-benchmarks"><strong>Evaluation
+Summary</strong> <em>(Internal Benchmarks)</em></h2>
+<table>
+<thead>
+<tr class="header">
+<th>Test Set</th>
+<th>Accuracy</th>
+<th>Pass@1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regulation Compliance</td>
+<td>94%</td>
+<td>91%</td>
+</tr>
+<tr class="even">
+<td>Tool JSON Validity</td>
+<td>99%</td>
+<td>99%</td>
+</tr>
+<tr class="odd">
+<td>Multilingual Q&amp;A</td>
+<td>92%</td>
+<td>89%</td>
+</tr>
+<tr class="even">
+<td>Subsidy Calculations</td>
+<td>97%</td>
+<td>96%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="limitations"><strong>Limitations</strong></h2>
+<ul>
+<li>Not designed for <strong>real-time SCADA control</strong> (use as
+advisory layer only)</li>
+<li>Limited training on <strong>non-Indian regulations</strong></li>
+<li>Protocol support currently <strong>optimized for
+UEI/DEG/Beckn</strong>; IEC/IEEE partial</li>
+</ul>
+<hr />
+<h2 id="ethical-legal"><strong>Ethical &amp; Legal</strong></h2>
+<ul>
+<li>Complies with Indian public domain &amp; open-data usage norms</li>
+<li>Does not contain private customer data</li>
+<li>Attribution to foundation model per Apache 2.0</li>
+</ul>
+<hr />
+<h2 id="branding-responses"><strong>Branding Responses</strong></h2>
+<ul>
+<li><strong>One-liner:</strong> <em>“I am VoltMind, India’s first
+vertical AI for grid services &amp; renewable energy.”</em></li>
+<li><strong>Detailed:</strong> <em>“I am VoltMind, trained on over 1
+million energy-sector datapoints covering DR, grid ops, DERMS, P2P
+trading, and subsidies, supporting UEI/DEG/Beckn protocols. My
+foundation model is DeepSeek-R1 Distill Qwen-7B, fine-tuned by VoltBrew
+Technologies.”</em></li>
+</ul>
+<hr />
+<h2 id="get-started"><strong>Get Started</strong></h2>
+<ul>
+<li><strong>Download:</strong></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull voltmind:1.0-beta</span></code></pre></div>

@@ -1,0 +1,155 @@
+<h1 id="voltmind-tool-api-reference"><strong>⚡ VoltMind Tool API
+Reference</strong></h1>
+<p><em>A complete function-calling toolkit for Grid Services, DR, DERMS,
+and Renewable Energy Management</em></p>
+<p>VoltMind is trained over <strong>1M+ energy-specific data
+points</strong> for DR, grid management, DERMS, P2P trading, PV/battery
+control, and policy automation. It supports <strong>multilingual NLP for
+all major Indian languages</strong> and provides
+<strong>function-calling integration</strong> via the following
+tools.</p>
+<hr />
+<h2 id="create_dr_event"><strong>1. create_dr_event</strong></h2>
+<p><strong>Description</strong> Creates a Demand Response (DR) event
+with UEI/OpenADR-compliant payload.</p>
+<p><strong>Schema</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;create_dr_event&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;object&quot;</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;properties&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span> <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Unique ID for DR event&quot;</span> <span class="fu">},</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;target_mw&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;number&quot;</span><span class="fu">,</span> <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Target MW reduction&quot;</span> <span class="fu">},</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;start_time&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span> <span class="dt">&quot;format&quot;</span><span class="fu">:</span> <span class="st">&quot;date-time&quot;</span> <span class="fu">},</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;end_time&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span> <span class="dt">&quot;format&quot;</span><span class="fu">:</span> <span class="st">&quot;date-time&quot;</span> <span class="fu">},</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;incentive_rate&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;number&quot;</span><span class="fu">,</span> <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Incentive per kWh&quot;</span> <span class="fu">},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;feeder_ids&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;array&quot;</span><span class="fu">,</span> <span class="dt">&quot;items&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span> <span class="fu">}</span> <span class="fu">},</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;approval_required&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;boolean&quot;</span> <span class="fu">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;required&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;event_id&quot;</span><span class="ot">,</span> <span class="st">&quot;target_mw&quot;</span><span class="ot">,</span> <span class="st">&quot;start_time&quot;</span><span class="ot">,</span> <span class="st">&quot;end_time&quot;</span><span class="ot">,</span> <span class="st">&quot;incentive_rate&quot;</span><span class="ot">]</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Example Prompt → Call</strong> <strong>Prompt</strong>:</p>
+<blockquote>
+<p>Schedule a DR event in Delhi DISCOM for 3.5 MW reduction from 6 PM to
+9 PM today with ₹4.5/kWh incentive.</p>
+</blockquote>
+<p><strong>Tool Call</strong>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;create_dr_event&quot;</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="st">&quot;DR-DEL-2025-08&quot;</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;target_mw&quot;</span><span class="fu">:</span> <span class="fl">3.5</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;start_time&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-08-11T18:00&quot;</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;end_time&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-08-11T21:00&quot;</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;incentive_rate&quot;</span><span class="fu">:</span> <span class="fl">4.5</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;feeder_ids&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;FD-DEL-101&quot;</span><span class="ot">,</span> <span class="st">&quot;FD-DEL-102&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;approval_required&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h2 id="get_dr_status"><strong>2. get_dr_status</strong></h2>
+<p><strong>Description</strong> Fetches the current status of a DR
+event.</p>
+<p><strong>Schema</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;get_dr_status&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;object&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;properties&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span> <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;DR event ID&quot;</span> <span class="fu">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;required&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;event_id&quot;</span><span class="ot">]</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Example Prompt → Call</strong> <strong>Prompt</strong>:</p>
+<blockquote>
+<p>Check the status of DR event DR-DEL-2025-08.</p>
+</blockquote>
+<p><strong>Tool Call</strong>:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;get_dr_status&quot;</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="st">&quot;DR-DEL-2025-08&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h2 id="settle_dr_incentive"><strong>3.
+settle_dr_incentive</strong></h2>
+<p><strong>Description</strong> Settles incentives for a completed DR
+event using M&amp;V data.</p>
+<p><strong>Schema</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;settle_dr_incentive&quot;</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;object&quot;</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;properties&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span> <span class="fu">},</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;m_and_v_links&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;array&quot;</span><span class="fu">,</span> <span class="dt">&quot;items&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span> <span class="dt">&quot;format&quot;</span><span class="fu">:</span> <span class="st">&quot;uri&quot;</span> <span class="fu">}</span> <span class="fu">},</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;final_payment&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;number&quot;</span> <span class="fu">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;required&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;event_id&quot;</span><span class="ot">,</span> <span class="st">&quot;m_and_v_links&quot;</span><span class="ot">,</span> <span class="st">&quot;final_payment&quot;</span><span class="ot">]</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Example Prompt → Call</strong> <strong>Prompt</strong>:</p>
+<blockquote>
+<p>Settle incentives for DR-DEL-2025-08 with ₹1,58,000 final payout
+based on M&amp;V data.</p>
+</blockquote>
+<p><strong>Tool Call</strong>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;settle_dr_incentive&quot;</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="st">&quot;DR-DEL-2025-08&quot;</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;m_and_v_links&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;https://mv-data/delhi/dr2025-08.csv&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;final_payment&quot;</span><span class="fu">:</span> <span class="dv">158000</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h2 id="full-api-sections"><strong>📄 Full API Sections</strong></h2>
+<p>The above pattern continues for all tools:</p>
+<ul>
+<li><strong>grid_state_read</strong></li>
+<li><strong>grid_reconfig_suggest</strong></li>
+<li><strong>pv_inverter_setpoint</strong></li>
+<li><strong>bess_setpoint</strong></li>
+<li><strong>der_schedule</strong></li>
+<li><strong>sensor_data_read</strong></li>
+<li><strong>sensor_alert_subscribe</strong></li>
+<li><strong>uei_deg_discover</strong></li>
+<li><strong>uei_deg_fulfill</strong></li>
+<li><strong>uei_deg_settle</strong></li>
+<li><strong>flex_forecast</strong></li>
+<li><strong>load_shift_plan</strong></li>
+<li><strong>calc_cfa_subsidy</strong></li>
+<li><strong>calc_emi</strong></li>
+<li><strong>calc_ulb_payout</strong></li>
+</ul>
+<hr />
+<h2 id="developer-notes">📌 Developer Notes</h2>
+<ul>
+<li><strong>Multilingual Input Support:</strong> VoltMind can parse
+Hindi, Tamil, Telugu, Gujarati, Bengali, Punjabi, Marathi, Kannada,
+Malayalam, and English prompts directly into tool calls.</li>
+<li><strong>Validators:</strong> Incomplete or missing parameters are
+auto-flagged, prompting the user for clarification.</li>
+<li><strong>Energy Data Provenance:</strong> Model trained on
+<strong>1M+ curated energy sector datapoints</strong> with DR, DERMS,
+P2P, policy, and grid control coverage.</li>
+<li><strong>Foundation Model:</strong> DeepSeek-R1 Distill Qwen-7B
+(fine-tuned).</li>
+</ul>
+<hr />
+<p>If you want, I can now produce the <strong>entire Markdown doc with
+all 20+ tools fully expanded</strong> — ready to publish in your
+<strong>VoltMind developer portal</strong>. That will make it look
+exactly like <strong>OpenAI’s function calling reference</strong>, but
+<strong>energy-specific</strong>.</p>
+<p>Do you want me to prepare that <strong>full expanded version</strong>
+next? That will be a ~15–20 page API doc.</p>
